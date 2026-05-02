@@ -7,20 +7,41 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
+    :root {
+      --bg: #0a0a0a;
+      --card-bg: #1a1a1a;
+      --border: #2a2a2a;
+      --text: #fff;
+      --text-secondary: #888;
+      --input-bg: #1a1a1a;
+      --gradient-text: linear-gradient(135deg, #fff 0%, #888 100%);
+    }
+    
+    .light-theme {
+      --bg: #f5f5f5;
+      --card-bg: #fff;
+      --border: #ddd;
+      --text: #1a1a1a;
+      --text-secondary: #666;
+      --input-bg: #fff;
+      --gradient-text: linear-gradient(135deg, #1a1a1a 0%, #666 100%);
+    }
+    
     body {
       font-family: -apple-system, sans-serif;
-      background: #0a0a0a;
+      background: var(--bg);
       width: 100vw;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: var(--text);
       position: relative;
       user-select: none;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
+      transition: background 0.3s, color 0.3s;
     }
     
     .brand {
@@ -29,19 +50,25 @@
       left: 2rem;
       font-size: 2rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #fff 0%, #888 100%);
+      background: var(--gradient-text);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       z-index: 10;
     }
     
-    .version {
+    .top-right {
       position: fixed;
       top: 2rem;
       right: 2rem;
-      font-size: 0.9rem;
-      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       z-index: 10;
+    }
+    
+    .version {
+      font-size: 0.9rem;
+      color: var(--text);
       cursor: help;
     }
     
@@ -51,12 +78,12 @@
       top: 100%;
       right: 0;
       margin-top: 0.5rem;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
       padding: 0.8rem 1rem;
       border-radius: 0.8rem;
       font-size: 0.75rem;
-      color: #888;
+      color: var(--text-secondary);
       width: 280px;
       line-height: 1.5;
       white-space: normal;
@@ -66,16 +93,133 @@
       display: block;
     }
     
+    .settings-btn {
+      font-size: 1.2rem;
+      color: var(--text);
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0.2rem;
+      transition: transform 0.2s;
+    }
+    
+    .settings-btn:hover {
+      transform: rotate(90deg);
+    }
+    
+    .settings-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      z-index: 100;
+      min-width: 300px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    
+    .settings-modal.active {
+      display: block;
+    }
+    
+    .settings-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 99;
+    }
+    
+    .settings-overlay.active {
+      display: block;
+    }
+    
+    .settings-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    
+    .setting-item label {
+      font-size: 0.9rem;
+    }
+    
+    .theme-toggle {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .theme-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    
+    .theme-btn.active {
+      background: #ff4444;
+      color: white;
+      border-color: #ff4444;
+    }
+    
+    .lang-btn {
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      width: 100%;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    
+    .lang-btn:hover {
+      background: var(--border);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    
     .api-counter {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
       padding: 0.8rem 1.2rem;
       border-radius: 1rem;
       font-size: 0.75rem;
-      color: #888;
+      color: var(--text-secondary);
       z-index: 10;
       line-height: 1.4;
     }
@@ -101,9 +245,9 @@
       flex: 1;
       padding: 1.2rem 1.5rem;
       border-radius: 1rem;
-      border: 2px solid #2a2a2a;
-      background: #1a1a1a;
-      color: white;
+      border: 2px solid var(--border);
+      background: var(--input-bg);
+      color: var(--text);
       font-size: 1.2rem;
       outline: none;
       text-align: center;
@@ -129,10 +273,10 @@
     .search-btn:hover { background: #ff2020; }
     
     .subscriber-card {
-      background: #1a1a1a;
+      background: var(--card-bg);
       border-radius: 2rem;
       padding: 3rem;
-      border: 2px solid #2a2a2a;
+      border: 2px solid var(--border);
       width: 100%;
       text-align: center;
       display: flex;
@@ -140,7 +284,7 @@
       align-items: center;
     }
     
-    .channel-name { font-size: 1.5rem; color: #888; margin-bottom: 0.5rem; }
+    .channel-name { font-size: 1.5rem; color: var(--text-secondary); margin-bottom: 0.5rem; }
     
     .subscriber-number {
       font-size: 4.5rem;
@@ -224,26 +368,67 @@
       .subscriber-card { padding: 2rem; }
       .search-box { flex-direction: column; }
       .api-counter { bottom: 1rem; right: 1rem; font-size: 0.7rem; }
-      .version { top: 1.5rem; right: 1.5rem; }
+      .top-right { top: 1.5rem; right: 1.5rem; }
     }
   </style>
 </head>
 <body>
+  <!-- Защита кода -->
+  <script>
+    // Блокировка Ctrl+U, Ctrl+Shift+I, F12, правой кнопки
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's')) {
+        e.preventDefault();
+        return false;
+      }
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J'))) {
+        e.preventDefault();
+        return false;
+      }
+    });
+  </script>
+  
   <div class="brand">LampoViews</div>
   
-  <div class="version">
-    1.0.1B
-    <div class="version-tooltip">
-      Что добавлено:<br>
-      • Добавлена плашка с API которое вы потратили<br>
-      • Теперь нету бага с API<br>
-      • Убран баг что можно просматривать каналы которых нет<br>
-      • API не тратится если канал не найден
+  <div class="top-right">
+    <button class="settings-btn" onclick="openSettings()" title="Настройки">⚙️</button>
+    <div class="version">
+      1.0.1B
+      <div class="version-tooltip">
+        Что добавлено v1.0.1B:<br>
+        • Добавлена плашка с API которое вы потратили<br>
+        • Теперь нету бага с API<br>
+        • Убран баг что можно просматривать каналы которых нет<br>
+        • API не тратится если канал не найден<br>
+        • Добавлены темы (светлая/тёмная)<br>
+        • Добавлен выбор языка (РУС/ENG)
+      </div>
+    </div>
+  </div>
+  
+  <!-- Оверлей и модалка настроек -->
+  <div class="settings-overlay" id="settingsOverlay" onclick="closeSettings()"></div>
+  <div class="settings-modal" id="settingsModal">
+    <button class="close-btn" onclick="closeSettings()">✕</button>
+    <div class="settings-title" id="settingsTitle">Настройки</div>
+    
+    <div class="setting-item">
+      <label id="themeLabel">Тема</label>
+      <div class="theme-toggle">
+        <button class="theme-btn active" onclick="setTheme('dark', this)" id="darkBtn">Тёмная</button>
+        <button class="theme-btn" onclick="setTheme('light', this)" id="lightBtn">Светлая</button>
+      </div>
+    </div>
+    
+    <div class="setting-item">
+      <label id="langLabel">Язык</label>
+      <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
     </div>
   </div>
   
   <div class="api-counter" id="apiCounter">
-    API сегодня:<br>
+    <span id="apiLabel">API сегодня:</span><br>
     <span id="quotaUsed">0</span> / 10 000
   </div>
 
@@ -263,13 +448,65 @@
   </div>
 
   <script>
+    // Защита от изменения текста
+    Object.defineProperty(document, 'designMode', {
+      get: function() { return 'off'; },
+      set: function() {}
+    });
+    
     const API_KEY = 'AIzaSyB9A_1cUmMm2SUeoBMlc7JeQUByAN7rCHU';
     let totalQueriesToday = 0;
     let currentChannel = '';
     let cachedSubscribers = 0;
     let apiTimer = null;
     let displayTimer = null;
-    let channelExists = false; // Флаг существования канала
+    let channelExists = false;
+    let currentLang = 'ru';
+    
+    const translations = {
+      ru: {
+        settings: 'Настройки',
+        theme: 'Тема',
+        dark: 'Тёмная',
+        light: 'Светлая',
+        language: 'Язык',
+        langBtn: 'English',
+        apiLabel: 'API сегодня:',
+        placeholder: 'Введите канал (@mrbeast)',
+        searchBtn: '🔍 Искать',
+        live: '● LIVE',
+        error: {
+          empty: 'Введите название канала',
+          invalid: 'Некорректное название канала',
+          short: 'Слишком короткое название',
+          long: 'Слишком длинное название',
+          noLetters: 'Название должно содержать буквы',
+          notExist: 'Такого канала не существует',
+          notFound: 'Канал не найден'
+        }
+      },
+      en: {
+        settings: 'Settings',
+        theme: 'Theme',
+        dark: 'Dark',
+        light: 'Light',
+        language: 'Language',
+        langBtn: 'Русский',
+        apiLabel: 'API today:',
+        placeholder: 'Enter channel (@mrbeast)',
+        searchBtn: '🔍 Search',
+        live: '● LIVE',
+        error: {
+          empty: 'Enter channel name',
+          invalid: 'Invalid channel name',
+          short: 'Name too short',
+          long: 'Name too long',
+          noLetters: 'Name must contain letters',
+          notExist: 'Channel does not exist',
+          notFound: 'Channel not found'
+        }
+      }
+    };
     
     const channelInput = document.getElementById('channelInput');
     const searchBtn = document.getElementById('searchBtn');
@@ -279,8 +516,59 @@
     const displaySubs = document.getElementById('displaySubs');
     const quotaUsed = document.getElementById('quotaUsed');
 
+    function t(key) {
+      const keys = key.split('.');
+      let result = translations[currentLang];
+      for (const k of keys) {
+        result = result[k];
+      }
+      return result;
+    }
+
+    function updateLanguage() {
+      document.getElementById('settingsTitle').textContent = t('settings');
+      document.getElementById('themeLabel').textContent = t('theme');
+      document.getElementById('darkBtn').textContent = t('dark');
+      document.getElementById('lightBtn').textContent = t('light');
+      document.getElementById('langLabel').textContent = t('language');
+      document.getElementById('langBtn').textContent = t('langBtn');
+      document.getElementById('apiLabel').textContent = t('apiLabel');
+      document.getElementById('searchBtn').textContent = t('searchBtn');
+      channelInput.placeholder = t('placeholder');
+      document.querySelector('.live-badge').textContent = t('live');
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ru' ? 'en' : 'ru';
+      updateLanguage();
+      localStorage.setItem('lampo_lang', currentLang);
+    }
+
+    function openSettings() {
+      document.getElementById('settingsModal').classList.add('active');
+      document.getElementById('settingsOverlay').classList.add('active');
+    }
+
+    function closeSettings() {
+      document.getElementById('settingsModal').classList.remove('active');
+      document.getElementById('settingsOverlay').classList.remove('active');
+    }
+
+    function setTheme(theme, btn) {
+      if (theme === 'dark') {
+        document.body.classList.remove('light-theme');
+        document.getElementById('darkBtn').classList.add('active');
+        document.getElementById('lightBtn').classList.remove('active');
+      } else {
+        document.body.classList.add('light-theme');
+        document.getElementById('lightBtn').classList.add('active');
+        document.getElementById('darkBtn').classList.remove('active');
+      }
+      localStorage.setItem('lampo_theme', theme);
+    }
+
     function formatNumber(num) {
-      return num.toLocaleString('ru-RU');
+      return num.toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US');
     }
 
     function updateQuotaDisplay() {
@@ -308,7 +596,7 @@
       for (let i = 0; i < newFormatted.length; i++) {
         const char = newFormatted[i];
         
-        if (char === ' ' || char === '\u00A0') {
+        if (char === ' ' || char === '\u00A0' || char === ',') {
           html += '<span class="space"></span>';
         } else {
           const oldChar = paddedOld[digitIndex];
@@ -371,7 +659,7 @@
       }
       
       channelExists = false;
-      throw new Error('Канал не найден');
+      throw new Error(t('error.notFound'));
     }
 
     async function updateCache() {
@@ -385,9 +673,8 @@
       } catch (err) {
         console.error('Ошибка:', err);
         channelExists = false;
-        // Если канал перестал существовать - останавливаем таймеры
         stopAllTimers();
-        showError('Канал не найден');
+        showError(t('error.notFound'));
       }
     }
 
@@ -429,7 +716,6 @@
           resultCard.classList.remove('hidden');
           errorEl.classList.add('hidden');
           
-          // Запускаем таймеры только если канал существует
           apiTimer = setInterval(updateCache, 10000);
           displayTimer = setInterval(updateDisplay, 100);
         }
@@ -440,29 +726,29 @@
       let input = channelInput.value.trim();
       
       if (!input) {
-        showError('Введите название канала');
+        showError(t('error.empty'));
         return;
       }
       
       input = input.replace(/^@/, '').replace(/\s+/g, '');
       
       if (!input) {
-        showError('Некорректное название');
+        showError(t('error.invalid'));
         return;
       }
       
       if (!/^[a-zA-Z0-9_-]+$/.test(input)) {
-        showError('Некорректное название канала');
+        showError(t('error.invalid'));
         return;
       }
       
       if (input.length < 3) {
-        showError('Слишком короткое название');
+        showError(t('error.short'));
         return;
       }
       
       if (input.length > 30) {
-        showError('Слишком длинное название');
+        showError(t('error.long'));
         return;
       }
       
@@ -470,18 +756,18 @@
       const letterCount = (input.match(/[a-zA-Z]/g) || []).length;
       
       if (letterCount === 0) {
-        showError('Название должно содержать буквы');
+        showError(t('error.noLetters'));
         return;
       }
       
       if (digitCount / input.length > 0.6) {
-        showError('Такого канала не существует');
+        showError(t('error.notExist'));
         return;
       }
       
       const repeatedPattern = /(.)\1{4,}/;
       if (repeatedPattern.test(input)) {
-        showError('Такого канала не существует');
+        showError(t('error.notExist'));
         return;
       }
       
@@ -498,6 +784,18 @@
     channelInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') handleSearch();
     });
+
+    // Восстановление настроек
+    const savedTheme = localStorage.getItem('lampo_theme');
+    if (savedTheme === 'light') {
+      setTheme('light');
+    }
+    
+    const savedLang = localStorage.getItem('lampo_lang');
+    if (savedLang) {
+      currentLang = savedLang;
+      updateLanguage();
+    }
 
     const saved = localStorage.getItem('lampo_queries');
     const savedDate = localStorage.getItem('lampo_date');
