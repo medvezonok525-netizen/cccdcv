@@ -17,6 +17,10 @@
       justify-content: center;
       color: white;
       position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
     
     .brand {
@@ -29,6 +33,37 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       z-index: 10;
+    }
+    
+    .version {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      font-size: 0.9rem;
+      color: #fff;
+      z-index: 10;
+      cursor: help;
+    }
+    
+    .version-tooltip {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      margin-top: 0.5rem;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      padding: 0.8rem 1rem;
+      border-radius: 0.8rem;
+      font-size: 0.75rem;
+      color: #888;
+      width: 280px;
+      line-height: 1.5;
+      white-space: normal;
+    }
+    
+    .version:hover .version-tooltip {
+      display: block;
     }
     
     .api-counter {
@@ -72,6 +107,8 @@
       font-size: 1.2rem;
       outline: none;
       text-align: center;
+      user-select: text;
+      -webkit-user-select: text;
     }
     
     .channel-input:focus { border-color: #ff4444; }
@@ -187,11 +224,23 @@
       .subscriber-card { padding: 2rem; }
       .search-box { flex-direction: column; }
       .api-counter { bottom: 1rem; right: 1rem; font-size: 0.7rem; }
+      .version { top: 1.5rem; right: 1.5rem; }
     }
   </style>
 </head>
 <body>
   <div class="brand">LampoViews</div>
+  
+  <div class="version">
+    1.0.1B
+    <div class="version-tooltip">
+      Что добавлено:<br>
+      • Добавлена плашка с API которое вы потратили<br>
+      • Теперь нету бага с API<br>
+      • Убран баг что можно просматривать каналы которых нет<br>
+      • API не тратится если канал не найден
+    </div>
+  </div>
   
   <div class="api-counter" id="apiCounter">
     API сегодня:<br>
@@ -220,6 +269,7 @@
     let cachedSubscribers = 0;
     let apiTimer = null;
     let displayTimer = null;
+    let channelExists = false; // Флаг существования канала
     
     const channelInput = document.getElementById('channelInput');
     const searchBtn = document.getElementById('searchBtn');
@@ -313,12 +363,14 @@
       const data = await response.json();
       
       if (data.items && data.items.length > 0) {
+        channelExists = true;
         return {
           title: data.items[0].snippet.title,
           subscribers: parseInt(data.items[0].statistics.subscriberCount)
         };
       }
       
+      channelExists = false;
       throw new Error('Канал не найден');
     }
 
@@ -329,13 +381,18 @@
         const data = await fetchChannelData(currentChannel);
         cachedSubscribers = data.subscribers;
         displayName.textContent = data.title;
+        channelExists = true;
       } catch (err) {
         console.error('Ошибка:', err);
+        channelExists = false;
+        // Если канал перестал существовать - останавливаем таймеры
+        stopAllTimers();
+        showError('Канал не найден');
       }
     }
 
     function updateDisplay() {
-      if (cachedSubscribers > 0) {
+      if (cachedSubscribers > 0 && channelExists) {
         const currentDisplay = parseInt(displaySubs.textContent.replace(/\s/g, '')) || 0;
         
         if (currentDisplay !== cachedSubscribers) {
@@ -347,22 +404,36 @@
       }
     }
 
+    function stopAllTimers() {
+      if (apiTimer) {
+        clearInterval(apiTimer);
+        apiTimer = null;
+      }
+      if (displayTimer) {
+        clearInterval(displayTimer);
+        displayTimer = null;
+      }
+    }
+
     function startUpdates(username) {
-      if (apiTimer) clearInterval(apiTimer);
-      if (displayTimer) clearInterval(displayTimer);
+      stopAllTimers();
       
       currentChannel = username;
       cachedSubscribers = 0;
+      channelExists = true;
       
       updateCache().then(() => {
-        displaySubs.textContent = formatNumber(cachedSubscribers);
-        displayName.textContent = '@' + currentChannel;
-        resultCard.classList.remove('hidden');
-        errorEl.classList.add('hidden');
+        if (channelExists) {
+          displaySubs.textContent = formatNumber(cachedSubscribers);
+          displayName.textContent = '@' + currentChannel;
+          resultCard.classList.remove('hidden');
+          errorEl.classList.add('hidden');
+          
+          // Запускаем таймеры только если канал существует
+          apiTimer = setInterval(updateCache, 10000);
+          displayTimer = setInterval(updateDisplay, 100);
+        }
       });
-      
-      apiTimer = setInterval(updateCache, 10000);
-      displayTimer = setInterval(updateDisplay, 100);
     }
 
     function handleSearch() {
@@ -380,7 +451,41 @@
         return;
       }
       
-      if (input.toLowerCase() === currentChannel.toLowerCase()) {
+      if (!/^[a-zA-Z0-9_-]+$/.test(input)) {
+        showError('Некорректное название канала');
+        return;
+      }
+      
+      if (input.length < 3) {
+        showError('Слишком короткое название');
+        return;
+      }
+      
+      if (input.length > 30) {
+        showError('Слишком длинное название');
+        return;
+      }
+      
+      const digitCount = (input.match(/\d/g) || []).length;
+      const letterCount = (input.match(/[a-zA-Z]/g) || []).length;
+      
+      if (letterCount === 0) {
+        showError('Название должно содержать буквы');
+        return;
+      }
+      
+      if (digitCount / input.length > 0.6) {
+        showError('Такого канала не существует');
+        return;
+      }
+      
+      const repeatedPattern = /(.)\1{4,}/;
+      if (repeatedPattern.test(input)) {
+        showError('Такого канала не существует');
+        return;
+      }
+      
+      if (input.toLowerCase() === currentChannel.toLowerCase() && channelExists) {
         resultCard.classList.remove('hidden');
         errorEl.classList.add('hidden');
         return;
@@ -409,8 +514,7 @@
     }, 30000);
 
     window.addEventListener('beforeunload', () => {
-      if (apiTimer) clearInterval(apiTimer);
-      if (displayTimer) clearInterval(displayTimer);
+      stopAllTimers();
       localStorage.setItem('lampo_queries', totalQueriesToday);
       localStorage.setItem('lampo_date', new Date().toDateString());
     });
