@@ -69,43 +69,19 @@
     
     .bg-neon {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
     }
     
     .neon-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.4;
+      position: absolute; border-radius: 50%;
+      filter: blur(80px); opacity: 0.4;
       animation: float 8s ease-in-out infinite;
     }
     
-    .neon-orb:nth-child(1) {
-      width: 400px; height: 400px;
-      background: var(--neon-pink);
-      top: -10%; left: -5%;
-      animation-delay: 0s;
-    }
-    
-    .neon-orb:nth-child(2) {
-      width: 350px; height: 350px;
-      background: var(--neon-blue);
-      bottom: -10%; right: -5%;
-      animation-delay: -3s;
-    }
-    
-    .neon-orb:nth-child(3) {
-      width: 300px; height: 300px;
-      background: var(--neon-purple);
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      animation-delay: -6s;
-    }
+    .neon-orb:nth-child(1) { width: 400px; height: 400px; background: var(--neon-pink); top: -10%; left: -5%; animation-delay: 0s; }
+    .neon-orb:nth-child(2) { width: 350px; height: 350px; background: var(--neon-blue); bottom: -10%; right: -5%; animation-delay: -3s; }
+    .neon-orb:nth-child(3) { width: 300px; height: 300px; background: var(--neon-purple); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -6s; }
     
     @keyframes float {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -114,238 +90,137 @@
     }
     
     .brand {
-      position: fixed;
-      top: 2rem; left: 2rem;
+      position: fixed; top: 2rem; left: 2rem;
       font-size: 1.8rem; font-weight: 800;
       background: var(--gradient-brand);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       z-index: 10; letter-spacing: -0.02em;
-      opacity: 0;
-      animation: slideDown 0.6s ease forwards;
-    }
-    
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
     
     .top-right {
-      position: fixed;
-      top: 2rem; right: 2rem;
-      display: flex; align-items: center; gap: 0.75rem;
-      z-index: 10; opacity: 0;
-      animation: slideDown 0.6s ease 0.1s forwards;
+      position: fixed; top: 2rem; right: 2rem;
+      display: flex; align-items: center; gap: 0.75rem; z-index: 10;
     }
     
     .version {
-      font-size: 0.8rem; font-weight: 500;
-      color: var(--text-muted);
+      font-size: 0.8rem; font-weight: 500; color: var(--text-muted);
       cursor: help; position: relative;
-      padding: 0.3rem 0.6rem;
-      border-radius: var(--radius-sm);
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      transition: all var(--transition);
-      letter-spacing: 0.05em;
+      padding: 0.3rem 0.6rem; border-radius: var(--radius-sm);
+      background: var(--card-bg); border: 1px solid var(--border);
+      transition: all var(--transition); letter-spacing: 0.05em;
       backdrop-filter: blur(10px);
     }
     
-    .version:hover {
-      color: var(--text);
-      border-color: var(--border-light);
-    }
+    .version:hover { color: var(--text); border-color: var(--border-light); }
     
     .version-tooltip {
-      display: none;
-      position: absolute;
-      top: calc(100% + 0.5rem);
-      right: 0;
-      background: var(--card-bg);
-      border: 1px solid var(--border-light);
-      padding: 1rem;
-      border-radius: var(--radius-md);
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      width: 300px;
-      line-height: 1.6;
-      white-space: normal;
-      backdrop-filter: blur(20px);
-      z-index: 20;
+      display: none; position: absolute; top: calc(100% + 0.5rem); right: 0;
+      background: var(--card-bg); border: 1px solid var(--border-light);
+      padding: 1rem; border-radius: var(--radius-md);
+      font-size: 0.75rem; color: var(--text-secondary);
+      width: 300px; line-height: 1.6; white-space: normal;
+      backdrop-filter: blur(20px); z-index: 20;
     }
     
     .version:hover .version-tooltip { display: block; }
     
     .settings-btn {
-      width: 36px; height: 36px;
-      font-size: 1.1rem; color: var(--text-muted);
-      cursor: pointer;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
+      width: 36px; height: 36px; font-size: 1.1rem; color: var(--text-muted);
+      cursor: pointer; background: var(--card-bg);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
       display: flex; align-items: center; justify-content: center;
-      transition: all var(--transition);
-      backdrop-filter: blur(10px);
+      transition: all var(--transition); backdrop-filter: blur(10px);
     }
     
-    .settings-btn:hover {
-      color: var(--text);
-      border-color: var(--border-light);
-      transform: rotate(45deg);
-    }
+    .settings-btn:hover { color: var(--text); border-color: var(--border-light); transform: rotate(45deg); }
     
     .api-counter {
-      position: fixed;
-      bottom: 2rem; right: 2rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 0.7rem 1rem;
-      border-radius: var(--radius-md);
-      font-size: 0.7rem; font-weight: 500;
-      color: var(--text-muted);
-      z-index: 10; line-height: 1.5;
-      letter-spacing: 0.02em;
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--card-bg); border: 1px solid var(--border);
+      padding: 0.7rem 1rem; border-radius: var(--radius-md);
+      font-size: 0.7rem; font-weight: 500; color: var(--text-muted);
+      z-index: 10; line-height: 1.5; letter-spacing: 0.02em;
       backdrop-filter: blur(10px);
-      opacity: 0;
-      animation: slideUp 0.6s ease 0.2s forwards;
     }
     
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .api-counter span { 
-      color: var(--green); 
-      font-weight: 700; 
-      font-size: 0.95rem;
-      font-variant-numeric: tabular-nums;
-    }
+    .api-counter span { color: var(--green); font-weight: 700; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
     
     .center-container {
-      width: 90%;
-      max-width: 550px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.5rem;
-      position: relative;
-      z-index: 1;
-      opacity: 0;
-      animation: scaleIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s forwards;
+      width: 90%; max-width: 550px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 1.5rem; position: relative; z-index: 1;
     }
     
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    
-    .search-box {
-      display: flex; gap: 0.75rem; width: 100%;
-    }
+    .search-box { display: flex; gap: 0.75rem; width: 100%; }
     
     .channel-input {
-      flex: 1;
-      padding: 1rem 1.5rem;
+      flex: 1; padding: 1rem 1.5rem;
       border-radius: var(--radius-lg);
       border: 2px solid var(--border);
-      background: var(--input-bg);
-      color: var(--text);
+      background: var(--input-bg); color: var(--text);
       font-size: 1.1rem; font-weight: 500;
       outline: none; text-align: center;
       user-select: text; -webkit-user-select: text;
-      transition: all var(--transition);
-      letter-spacing: -0.01em;
+      transition: all var(--transition); letter-spacing: -0.01em;
       backdrop-filter: blur(10px);
     }
     
-    .channel-input:focus { 
-      border-color: var(--accent);
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-    
+    .channel-input:focus { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
     .channel-input::placeholder { color: var(--text-muted); font-weight: 400; }
     
     .search-btn {
-      padding: 1rem 1.8rem;
-      border-radius: var(--radius-lg);
-      border: none;
-      background: var(--accent);
-      color: white;
-      font-weight: 700; font-size: 1rem;
-      cursor: pointer; white-space: nowrap;
-      transition: all var(--transition);
-      letter-spacing: -0.01em;
-      box-shadow: 0 0 20px var(--accent-glow);
+      padding: 1rem 1.8rem; border-radius: var(--radius-lg);
+      border: none; background: var(--accent); color: white;
+      font-weight: 700; font-size: 1rem; cursor: pointer;
+      white-space: nowrap; transition: all var(--transition);
+      letter-spacing: -0.01em; box-shadow: 0 0 20px var(--accent-glow);
     }
     
-    .search-btn:hover { 
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px var(--accent-glow);
-    }
-    
+    .search-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 0 30px var(--accent-glow); }
     .search-btn:active { transform: translateY(0); }
     .search-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
     
     .subscriber-card {
-      background: var(--card-bg);
-      border-radius: var(--radius-2xl);
-      padding: 3.5rem 2rem;
-      border: 1px solid var(--border);
-      width: 100%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.25rem;
-      backdrop-filter: blur(20px);
+      background: var(--card-bg); border-radius: var(--radius-2xl);
+      padding: 2.5rem 2rem 2rem; border: 1px solid var(--border);
+      width: 100%; text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.5rem; backdrop-filter: blur(20px);
       transition: all var(--transition);
     }
     
-    .channel-name { 
-      font-size: 1.2rem; 
-      color: var(--text-secondary); 
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
+    .channel-name { font-size: 1.2rem; color: var(--text-secondary); font-weight: 600; letter-spacing: -0.01em; }
     
     .subscriber-number {
-      font-size: 5.5rem;
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      margin: 0.75rem 0;
+      font-size: 5rem; font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.04em; margin: 0.25rem 0;
       background: var(--gradient-accent);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      white-space: nowrap;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; white-space: nowrap;
       font-variant-numeric: tabular-nums;
+      transition: transform 0.15s ease;
     }
     
+    .views-info {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.85rem; color: var(--text-muted);
+      font-weight: 500; margin-top: 0.25rem;
+    }
+    
+    .views-icon { opacity: 0.6; }
+    .views-count { color: var(--text-secondary); font-weight: 600; }
+    
     .live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 45, 85, 0.1);
-      color: var(--accent);
-      padding: 0.35rem 1rem;
-      border-radius: 2rem;
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255, 45, 85, 0.1); color: var(--accent);
+      padding: 0.35rem 1rem; border-radius: 2rem;
+      font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em;
       border: 1px solid rgba(255, 45, 85, 0.2);
     }
     
-    .live-dot {
-      width: 7px; height: 7px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulseLive 1.5s infinite;
-      box-shadow: 0 0 8px var(--accent-glow);
-    }
+    .live-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulseLive 1.5s infinite; box-shadow: 0 0 8px var(--accent-glow); }
     
     @keyframes pulseLive {
       0%, 100% { opacity: 1; transform: scale(1); }
@@ -353,30 +228,20 @@
     }
     
     .settings-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      z-index: 100;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+      z-index: 100; backdrop-filter: blur(4px);
     }
     
     .settings-overlay.active { display: block; }
     
     .settings-modal {
-      display: none;
-      position: fixed;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--card-bg);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-xl);
-      padding: 2.5rem;
-      z-index: 101;
-      min-width: 340px;
-      backdrop-filter: blur(20px);
-      animation: modalIn 0.2s ease;
+      display: none; position: fixed;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: var(--card-bg); border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl); padding: 2.5rem;
+      z-index: 101; min-width: 360px;
+      backdrop-filter: blur(20px); animation: modalIn 0.2s ease;
     }
     
     @keyframes modalIn {
@@ -386,127 +251,116 @@
     
     .settings-modal.active { display: block; }
     
-    .settings-title {
-      font-size: 1.1rem; font-weight: 700;
-      margin-bottom: 2rem; color: var(--text);
-      letter-spacing: -0.01em;
-    }
+    .settings-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 2rem; color: var(--text); }
     
     .setting-item {
       display: flex; justify-content: space-between;
-      align-items: center; margin-bottom: 1.25rem;
-      color: var(--text); gap: 1rem;
+      align-items: center; margin-bottom: 1.25rem; gap: 1rem;
     }
     
     .setting-item label { font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); }
     
     .theme-toggle {
-      display: flex; gap: 0.4rem;
-      background: var(--input-bg);
-      padding: 0.3rem;
-      border-radius: var(--radius-sm);
+      display: flex; gap: 0.4rem; background: var(--input-bg);
+      padding: 0.3rem; border-radius: var(--radius-sm);
       border: 1px solid var(--border);
     }
     
     .theme-btn {
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius-sm);
-      border: none; background: transparent;
-      color: var(--text-muted);
-      cursor: pointer; font-size: 0.85rem;
-      font-weight: 500;
+      padding: 0.5rem 1rem; border-radius: var(--radius-sm);
+      border: none; background: transparent; color: var(--text-muted);
+      cursor: pointer; font-size: 0.85rem; font-weight: 500;
       transition: all var(--transition);
     }
     
     .theme-btn.active { background: var(--accent); color: white; }
     .theme-btn:not(.active):hover { color: var(--text); }
     
-    .lang-btn {
-      padding: 0.6rem 1.2rem;
+    .lang-select-wrapper {
+      position: relative;
+    }
+    
+    .lang-select-btn {
+      padding: 0.6rem 2rem 0.6rem 1rem;
       border-radius: var(--radius-sm);
       border: 1px solid var(--border);
-      background: var(--input-bg);
-      color: var(--text);
-      cursor: pointer; font-size: 0.85rem;
-      font-weight: 500;
+      background: var(--input-bg); color: var(--text);
+      cursor: pointer; font-size: 0.85rem; font-weight: 500;
+      transition: all var(--transition);
+      appearance: none; -webkit-appearance: none;
+      min-width: 140px; text-align: left;
+      position: relative;
+    }
+    
+    .lang-select-btn:hover { border-color: var(--border-light); }
+    
+    .lang-select-arrow {
+      position: absolute; right: 0.7rem; top: 50%;
+      transform: translateY(-50%); pointer-events: none;
+      font-size: 0.6rem; color: var(--text-muted);
+    }
+    
+    .lang-dropdown {
+      display: none; position: absolute; top: 100%;
+      left: 0; right: 0; margin-top: 0.3rem;
+      background: var(--card-bg); border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm); overflow: hidden;
+      z-index: 200; backdrop-filter: blur(20px);
+    }
+    
+    .lang-dropdown.open { display: block; }
+    
+    .lang-option {
+      padding: 0.6rem 1rem; cursor: pointer;
+      font-size: 0.85rem; color: var(--text-secondary);
       transition: all var(--transition);
     }
     
-    .lang-btn:hover { border-color: var(--border-light); }
+    .lang-option:hover { background: var(--border); color: var(--text); }
+    .lang-option.selected { color: var(--accent); font-weight: 600; }
     
     .close-btn {
-      position: absolute;
-      top: 1.25rem; right: 1.25rem;
-      width: 32px; height: 32px;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      color: var(--text-muted);
-      font-size: 1rem; cursor: pointer;
-      display: flex; align-items: center;
-      justify-content: center;
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      width: 32px; height: 32px; background: var(--input-bg);
+      border: 1px solid var(--border); border-radius: 50%;
+      color: var(--text-muted); font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
       transition: all var(--transition);
     }
     
     .close-btn:hover { color: var(--text); border-color: var(--border-light); }
     
     .captcha-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 200;
-      align-items: center; justify-content: center;
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.7);
+      z-index: 200; align-items: center; justify-content: center;
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
     }
     
     .captcha-overlay.active { display: flex; }
     
     .captcha-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-xl);
-      padding: 3rem 2.5rem;
-      text-align: center;
-      max-width: 400px; width: 90%;
-      backdrop-filter: blur(20px);
-      animation: modalIn 0.3s ease;
+      background: var(--card-bg); border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl); padding: 3rem 2.5rem;
+      text-align: center; max-width: 400px; width: 90%;
+      backdrop-filter: blur(20px); animation: modalIn 0.3s ease;
     }
     
     .captcha-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
     .captcha-subtitle { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 2rem; }
     
     .captcha-checkbox {
-      width: 56px; height: 56px;
-      border: 2px solid var(--border-light);
-      border-radius: var(--radius-md);
-      background: var(--input-bg);
-      cursor: pointer;
-      display: flex; align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
+      width: 56px; height: 56px; border: 2px solid var(--border-light);
+      border-radius: var(--radius-md); background: var(--input-bg);
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 1.5rem;
       transition: all var(--transition);
     }
     
-    .captcha-checkbox:hover {
-      border-color: var(--green);
-      box-shadow: 0 0 20px var(--green-glow);
-      transform: scale(1.05);
-    }
-    
-    .captcha-checkbox.checked {
-      background: var(--green);
-      border-color: var(--green);
-      box-shadow: 0 0 20px var(--green-glow);
-    }
-    
+    .captcha-checkbox:hover { border-color: var(--green); box-shadow: 0 0 20px var(--green-glow); transform: scale(1.05); }
+    .captcha-checkbox.checked { background: var(--green); border-color: var(--green); box-shadow: 0 0 20px var(--green-glow); }
     .captcha-checkmark { display: none; color: white; font-size: 1.5rem; font-weight: 700; }
-    
-    .captcha-checkbox.checked .captcha-checkmark {
-      display: block;
-      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+    .captcha-checkbox.checked .captcha-checkmark { display: block; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     
     @keyframes popIn {
       0% { transform: scale(0) rotate(-45deg); }
@@ -514,40 +368,21 @@
     }
     
     .captcha-status { font-size: 0.85rem; color: var(--green); font-weight: 500; min-height: 1.5rem; }
-    
-    .captcha-spinner {
-      display: none; width: 24px; height: 24px;
-      border: 2px solid rgba(48, 209, 88, 0.2);
-      border-top-color: var(--green);
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      margin: 0.5rem auto;
-    }
+    .captcha-spinner { display: none; width: 24px; height: 24px; border: 2px solid rgba(48, 209, 88, 0.2); border-top-color: var(--green); border-radius: 50%; animation: spin 0.6s linear infinite; margin: 0.5rem auto; }
     
     @keyframes spin { to { transform: rotate(360deg); } }
     
-    .error-message {
-      color: var(--accent);
-      background: rgba(255, 45, 85, 0.08);
-      padding: 0.8rem 1.2rem;
-      border-radius: var(--radius-md);
-      text-align: center;
-      width: 100%;
-      font-size: 0.85rem; font-weight: 500;
-      border: 1px solid rgba(255, 45, 85, 0.15);
-      backdrop-filter: blur(10px);
-    }
+    .error-message { color: var(--accent); background: rgba(255, 45, 85, 0.08); padding: 0.8rem 1.2rem; border-radius: var(--radius-md); text-align: center; width: 100%; font-size: 0.85rem; font-weight: 500; border: 1px solid rgba(255, 45, 85, 0.15); backdrop-filter: blur(10px); }
     
     .hidden { display: none !important; }
     
     @media (max-width: 600px) {
       .brand { font-size: 1.4rem; top: 1.5rem; left: 1.5rem; }
       .subscriber-number { font-size: 3.5rem; }
-      .subscriber-card { padding: 2.5rem 1.5rem; }
+      .subscriber-card { padding: 2rem 1.5rem; }
       .search-box { flex-direction: column; }
-      .api-counter { bottom: 1rem; right: 1rem; font-size: 0.65rem; }
+      .api-counter { bottom: 1rem; right: 1rem; }
       .top-right { top: 1.5rem; right: 1.5rem; }
-      .settings-modal { min-width: auto; width: 90%; padding: 2rem 1.5rem; }
     }
   </style>
 </head>
@@ -570,9 +405,7 @@
     <div class="captcha-box">
       <div class="captcha-title" id="captchaTitle">Подтвердите, что вы не бот</div>
       <div class="captcha-subtitle" id="captchaSubtitle">Нажмите на галочку чтобы продолжить</div>
-      <div class="captcha-checkbox" id="captchaCheckbox" onclick="startCaptcha()">
-        <span class="captcha-checkmark">✓</span>
-      </div>
+      <div class="captcha-checkbox" id="captchaCheckbox" onclick="startCaptcha()"><span class="captcha-checkmark">✓</span></div>
       <div class="captcha-spinner" id="captchaSpinner"></div>
       <div class="captcha-status" id="captchaStatus"></div>
     </div>
@@ -583,13 +416,13 @@
   <div class="top-right">
     <button class="settings-btn" onclick="openSettings()" title="Настройки">⚙</button>
     <div class="version">
-      v1.2.1
+      v1.3.0
       <div class="version-tooltip">
-        ✨ v1.2.1 — Исправления:<br>
-        • Исправлен баг с разрывом цифр<br>
-        • Упрощена анимация (без прыжков)<br>
-        • Цифры всегда целые, без разрывов<br>
-        • Улучшена стабильность отображения
+        ✨ v1.3.0 — Обновление:<br>
+        • Выпадающий список языков<br>
+        • Добавлены украинский и китайский<br>
+        • Отображение просмотров канала<br>
+        • Улучшенный дизайн карточки
       </div>
     </div>
   </div>
@@ -598,16 +431,29 @@
   <div class="settings-modal" id="settingsModal">
     <button class="close-btn" onclick="closeSettings()">✕</button>
     <div class="settings-title" id="settingsTitle">Настройки</div>
+    
     <div class="setting-item">
       <label id="themeLabel">Тема</label>
       <div class="theme-toggle">
-        <button class="theme-btn active" onclick="setTheme('dark', this)" id="darkBtn">Тёмная</button>
-        <button class="theme-btn" onclick="setTheme('light', this)" id="lightBtn">Светлая</button>
+        <button class="theme-btn active" onclick="setTheme('dark')" id="darkBtn">Тёмная</button>
+        <button class="theme-btn" onclick="setTheme('light')" id="lightBtn">Светлая</button>
       </div>
     </div>
+    
     <div class="setting-item">
       <label id="langLabel">Язык</label>
-      <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+      <div class="lang-select-wrapper">
+        <button class="lang-select-btn" id="langSelectBtn" onclick="toggleLangDropdown()">
+          <span id="currentLangText">Русский</span>
+        </button>
+        <span class="lang-select-arrow">▼</span>
+        <div class="lang-dropdown" id="langDropdown">
+          <div class="lang-option selected" data-lang="ru" onclick="selectLanguage('ru')">🇷🇺 Русский</div>
+          <div class="lang-option" data-lang="en" onclick="selectLanguage('en')">🇬🇧 English</div>
+          <div class="lang-option" data-lang="uk" onclick="selectLanguage('uk')">🇺🇦 Українська</div>
+          <div class="lang-option" data-lang="zh" onclick="selectLanguage('zh')">🇨🇳 中文</div>
+        </div>
+      </div>
     </div>
   </div>
   
@@ -627,10 +473,12 @@
     <div id="resultCard" class="subscriber-card hidden">
       <div class="channel-name" id="displayName">@username</div>
       <div class="subscriber-number" id="displaySubs">0</div>
-      <div class="live-badge">
-        <span class="live-dot"></span>
-        LIVE
+      <div class="views-info">
+        <span class="views-icon">👁</span>
+        <span class="views-count" id="displayViews">0</span>
+        <span id="viewsLabel">просмотров</span>
       </div>
+      <div class="live-badge"><span class="live-dot"></span> LIVE</div>
     </div>
   </div>
 
@@ -638,35 +486,47 @@
     Object.defineProperty(document, 'designMode', { get: function() { return 'off'; }, set: function() {} });
     
     const API_KEY = 'AIzaSyB9A_1cUmMm2SUeoBMlc7JeQUByAN7rCHU';
-    let totalQueriesToday = 0, currentChannel = '', cachedSubscribers = 0;
-    let apiTimer = null, displayTimer = null, channelExists = false, captchaPassed = false, currentLang = 'ru';
-    let currentDisplayedNumber = 0;
+    let totalQueriesToday = 0, currentChannel = '', cachedSubscribers = 0, cachedViews = 0;
+    let apiTimer = null, displayTimer = null, channelExists = false, captchaPassed = false;
+    let currentLang = 'ru', currentDisplayedNumber = 0;
     
     const translations = {
-      ru: {
-        settings: 'Настройки', theme: 'Тема', dark: 'Тёмная', light: 'Светлая',
-        language: 'Язык', langBtn: 'English', apiLabel: 'API сегодня',
-        placeholder: 'Введите канал (@mrbeast)', searchBtn: 'Поиск',
-        captchaTitle: 'Подтвердите, что вы не бот',
-        captchaSubtitle: 'Нажмите на галочку чтобы продолжить',
-        captchaChecking: 'Проверка...', captchaSuccess: '✓ Проверка пройдена!',
+      ru: { settings: 'Настройки', theme: 'Тема', dark: 'Тёмная', light: 'Светлая', language: 'Язык',
+        apiLabel: 'API сегодня', placeholder: 'Введите канал (@mrbeast)', searchBtn: 'Поиск',
+        viewsLabel: 'просмотров', captchaTitle: 'Подтвердите, что вы не бот',
+        captchaSubtitle: 'Нажмите на галочку чтобы продолжить', captchaChecking: 'Проверка...',
+        captchaSuccess: '✓ Проверка пройдена!',
         error: { empty: 'Введите название канала', invalid: 'Некорректное название канала',
           short: 'Слишком короткое название', long: 'Слишком длинное название',
           noLetters: 'Название должно содержать буквы', notExist: 'Такого канала не существует',
-          notFound: 'Канал не найден' }
-      },
-      en: {
-        settings: 'Settings', theme: 'Theme', dark: 'Dark', light: 'Light',
-        language: 'Language', langBtn: 'Русский', apiLabel: 'API today',
-        placeholder: 'Enter channel (@mrbeast)', searchBtn: 'Search',
-        captchaTitle: 'Verify you are human',
-        captchaSubtitle: 'Click the checkbox to continue',
-        captchaChecking: 'Checking...', captchaSuccess: '✓ Verification passed!',
+          notFound: 'Канал не найден' }},
+      en: { settings: 'Settings', theme: 'Theme', dark: 'Dark', light: 'Light', language: 'Language',
+        apiLabel: 'API today', placeholder: 'Enter channel (@mrbeast)', searchBtn: 'Search',
+        viewsLabel: 'views', captchaTitle: 'Verify you are human',
+        captchaSubtitle: 'Click the checkbox to continue', captchaChecking: 'Checking...',
+        captchaSuccess: '✓ Verification passed!',
         error: { empty: 'Enter channel name', invalid: 'Invalid channel name',
           short: 'Name too short', long: 'Name too long',
           noLetters: 'Name must contain letters', notExist: 'Channel does not exist',
-          notFound: 'Channel not found' }
-      }
+          notFound: 'Channel not found' }},
+      uk: { settings: 'Налаштування', theme: 'Тема', dark: 'Темна', light: 'Світла', language: 'Мова',
+        apiLabel: 'API сьогодні', placeholder: 'Введіть канал (@mrbeast)', searchBtn: 'Пошук',
+        viewsLabel: 'переглядів', captchaTitle: 'Підтвердіть, що ви не бот',
+        captchaSubtitle: 'Натисніть на галочку щоб продовжити', captchaChecking: 'Перевірка...',
+        captchaSuccess: '✓ Перевірку пройдено!',
+        error: { empty: 'Введіть назву каналу', invalid: 'Некоректна назва каналу',
+          short: 'Занадто коротка назва', long: 'Занадто довга назва',
+          noLetters: 'Назва повинна містити букви', notExist: 'Такого каналу не існує',
+          notFound: 'Канал не знайдено' }},
+      zh: { settings: '设置', theme: '主题', dark: '深色', light: '浅色', language: '语言',
+        apiLabel: 'API 今日', placeholder: '输入频道 (@mrbeast)', searchBtn: '搜索',
+        viewsLabel: '次观看', captchaTitle: '验证您不是机器人',
+        captchaSubtitle: '点击复选框继续', captchaChecking: '检查中...',
+        captchaSuccess: '✓ 验证通过！',
+        error: { empty: '输入频道名称', invalid: '无效的频道名称',
+          short: '名称太短', long: '名称太长',
+          noLetters: '名称必须包含字母', notExist: '频道不存在',
+          notFound: '未找到频道' }}
     };
     
     const channelInput = document.getElementById('channelInput'),
@@ -675,27 +535,50 @@
           resultCard = document.getElementById('resultCard'),
           displayName = document.getElementById('displayName'),
           displaySubs = document.getElementById('displaySubs'),
+          displayViews = document.getElementById('displayViews'),
           quotaUsed = document.getElementById('quotaUsed');
 
     function t(key) { return key.split('.').reduce((o, k) => o[k], translations[currentLang]); }
     
-    function updateLanguage() {
+    function updateUI() {
       document.getElementById('settingsTitle').textContent = t('settings');
       document.getElementById('themeLabel').textContent = t('theme');
       document.getElementById('darkBtn').textContent = t('dark');
       document.getElementById('lightBtn').textContent = t('light');
       document.getElementById('langLabel').textContent = t('language');
-      document.getElementById('langBtn').textContent = t('langBtn');
       document.getElementById('apiLabel').textContent = t('apiLabel');
       document.getElementById('searchBtn').textContent = t('searchBtn');
       channelInput.placeholder = t('placeholder');
+      document.getElementById('viewsLabel').textContent = t('viewsLabel');
       document.getElementById('captchaTitle').textContent = t('captchaTitle');
       document.getElementById('captchaSubtitle').textContent = t('captchaSubtitle');
+      
+      const langNames = { ru: '🇷🇺 Русский', en: '🇬🇧 English', uk: '🇺🇦 Українська', zh: '🇨🇳 中文' };
+      document.getElementById('currentLangText').textContent = langNames[currentLang];
     }
 
-    function toggleLanguage() { currentLang = currentLang === 'ru' ? 'en' : 'ru'; updateLanguage(); localStorage.setItem('lampo_lang', currentLang); }
+    function toggleLangDropdown() {
+      document.getElementById('langDropdown').classList.toggle('open');
+    }
+    
+    function selectLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('lampo_lang', currentLang);
+      updateUI();
+      document.getElementById('langDropdown').classList.remove('open');
+      
+      document.querySelectorAll('.lang-option').forEach(o => o.classList.remove('selected'));
+      document.querySelector(`[data-lang="${lang}"]`).classList.add('selected');
+      
+      if (currentChannel) {
+        updateNumberDisplay(cachedSubscribers);
+        displayViews.textContent = formatNumber(cachedViews);
+      }
+    }
+
     function openSettings() { if (!captchaPassed) return; document.getElementById('settingsModal').classList.add('active'); document.getElementById('settingsOverlay').classList.add('active'); }
-    function closeSettings() { document.getElementById('settingsModal').classList.remove('active'); document.getElementById('settingsOverlay').classList.remove('active'); }
+    function closeSettings() { document.getElementById('settingsModal').classList.remove('active'); document.getElementById('settingsOverlay').classList.remove('active'); document.getElementById('langDropdown').classList.remove('open'); }
+    
     function setTheme(theme) {
       if (theme === 'dark') { document.body.classList.remove('light-theme'); document.getElementById('darkBtn').classList.add('active'); document.getElementById('lightBtn').classList.remove('active'); }
       else { document.body.classList.add('light-theme'); document.getElementById('lightBtn').classList.add('active'); document.getElementById('darkBtn').classList.remove('active'); }
@@ -715,17 +598,14 @@
       }, 1500);
     }
 
-    function formatNumber(num) { return num.toLocaleString(currentLang === 'ru' ? 'ru-RU' : 'en-US'); }
+    function formatNumber(num) { return num.toLocaleString(currentLang === 'ru' ? 'ru-RU' : currentLang === 'uk' ? 'uk-UA' : currentLang === 'zh' ? 'zh-CN' : 'en-US'); }
     function updateQuotaDisplay() { quotaUsed.textContent = formatNumber(totalQueriesToday); }
     function showError(text) { errorEl.textContent = '⚠ ' + text; errorEl.classList.remove('hidden'); resultCard.classList.add('hidden'); }
 
-    // Новая функция обновления числа - ПРОСТО МЕНЯЕТ ТЕКСТ, без анимации
     function updateNumberDisplay(newNumber) {
       if (currentDisplayedNumber !== newNumber) {
         displaySubs.textContent = formatNumber(newNumber);
         currentDisplayedNumber = newNumber;
-        
-        // Лёгкая анимация масштаба
         displaySubs.style.transform = 'scale(1.03)';
         setTimeout(() => { displaySubs.style.transform = 'scale(1)'; }, 150);
       }
@@ -735,19 +615,34 @@
       totalQueriesToday++; updateQuotaDisplay();
       const r = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics,snippet&forHandle=${username}&key=${API_KEY}`);
       const d = await r.json();
-      if (d.items?.length) { channelExists = true; return { title: d.items[0].snippet.title, subscribers: +d.items[0].statistics.subscriberCount }; }
+      if (d.items?.length) {
+        channelExists = true;
+        return {
+          title: d.items[0].snippet.title,
+          subscribers: +d.items[0].statistics.subscriberCount,
+          views: +d.items[0].statistics.viewCount
+        };
+      }
       channelExists = false; throw new Error(t('error.notFound'));
     }
 
     async function updateCache() {
       if (!currentChannel || !captchaPassed) return;
-      try { const d = await fetchChannelData(currentChannel); cachedSubscribers = d.subscribers; displayName.textContent = d.title; channelExists = true; }
-      catch { channelExists = false; stopAllTimers(); showError(t('error.notFound')); }
+      try {
+        const d = await fetchChannelData(currentChannel);
+        cachedSubscribers = d.subscribers;
+        cachedViews = d.views;
+        displayName.textContent = d.title;
+        channelExists = true;
+      } catch {
+        channelExists = false; stopAllTimers(); showError(t('error.notFound'));
+      }
     }
 
     function updateDisplay() {
       if (cachedSubscribers > 0 && channelExists && captchaPassed) {
         updateNumberDisplay(cachedSubscribers);
+        displayViews.textContent = formatNumber(cachedViews);
         resultCard.classList.remove('hidden'); errorEl.classList.add('hidden');
       }
     }
@@ -756,10 +651,11 @@
 
     function startUpdates(username) {
       if (!captchaPassed) return;
-      stopAllTimers(); currentChannel = username; cachedSubscribers = 0; channelExists = true; currentDisplayedNumber = 0;
+      stopAllTimers(); currentChannel = username; cachedSubscribers = 0; cachedViews = 0; channelExists = true; currentDisplayedNumber = 0;
       updateCache().then(() => {
         if (channelExists) {
           updateNumberDisplay(cachedSubscribers);
+          displayViews.textContent = formatNumber(cachedViews);
           displayName.textContent = '@' + currentChannel;
           resultCard.classList.remove('hidden'); errorEl.classList.add('hidden');
           apiTimer = setInterval(updateCache, 10000); displayTimer = setInterval(updateDisplay, 100);
@@ -784,12 +680,21 @@
 
     searchBtn.addEventListener('click', handleSearch);
     channelInput.addEventListener('keypress', e => { if (e.key === 'Enter') handleSearch(); });
+    
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lang-select-wrapper')) {
+        document.getElementById('langDropdown').classList.remove('open');
+      }
+    });
 
     if (localStorage.getItem('lampo_captcha') === 'passed') { captchaPassed = true; channelInput.disabled = false; searchBtn.disabled = false; }
     else document.getElementById('captchaOverlay').classList.add('active');
 
     if (localStorage.getItem('lampo_theme') === 'light') setTheme('light');
-    const sl = localStorage.getItem('lampo_lang'); if (sl) { currentLang = sl; updateLanguage(); }
+    const sl = localStorage.getItem('lampo_lang');
+    if (sl && translations[sl]) { currentLang = sl; }
+    updateUI();
+    document.querySelector(`[data-lang="${currentLang}"]`)?.classList.add('selected');
 
     const saved = localStorage.getItem('lampo_queries'), savedDate = localStorage.getItem('lampo_date'), today = new Date().toDateString();
     if (saved && savedDate === today) totalQueriesToday = +saved;
